@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&family=Poppins:wght@100;300;400&family=Ubuntu&display=swap');
+
+:root {
+    --lightgreen: #fbfff1;
+    --darkgrey: #3c3744;
+    --darkblue: #090c9b;
+    --blue: #3066be;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+body {
+    background-image: linear-gradient(to bottom, var(--blue), var(--darkblue));
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+    user-select: none;
+}
+
+hr {
+    width: 80%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--lightgreen);
+
+}
+
+.name {
+    text-align: center;
+    margin-top: 10rem;
+    font-size: 3rem;
+    color: var(--lightgreen);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10rem;
+}
+.card {
+    width: 200px;
+    height: 250px;
+    background: #07182E;
+    border-radius: 5px;
+    text-align: center;
+    color: #f0f0f0;
+    overflow: hidden;
+    font-family: inherit;
+    z-index: 1;
+  }
+  
+  .img {
+    display: flex;
+    margin: 60px auto 10px auto;
+    width: 75px;
+    height: 75px;
+    border: 1px solid #f0f0f0;
+    border-radius: 50%;
+    font-size: 11px;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s;
+    z-index: 99;
+    background-color: #152f50;
+  }
+  
+  p {
+    opacity: 0;
+    transition: all 0.5s;
+  }
+  
+  .heading {
+    padding: 10px;
+    font-weight: 500;
+    font-size: 18px;
+  }
+  
+  svg {
+    padding: 0 5px;
+    cursor: pointer;
+  }
+  
+  .card:hover .img {
+    transform: scale(1.1);
+    border: 1px solid #f0f0f0;
+  }
+  
+  .card:hover h1,
+  .card:hover p {
+    opacity: 1;
+  }
+
+  .cardContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 6rem; /* Adjust the margin as needed */
+    gap: 30px;
+  }
