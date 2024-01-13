@@ -99,3 +99,37 @@ hr {
     margin-top: 6rem; /* Adjust the margin as needed */
     gap: 30px;
   }
+
+  footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+a {
+    color: white;
+    text-decoration: none;
+    margin-right: 50px;
+    /* Add left margin as needed */
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.footer-image {
+    width: 50px; /* Adjust the width as needed */
+    height: 50px; /* Adjust the height as needed */
+    object-fit: cover;
+    border-radius: 50%; /* Optional: add border-radius for a circular image */
+}

@@ -318,3 +318,9 @@ a:hover {
     }
   }
   
+  .footer-image {
+    width: 50px; /* Adjust the width as needed */
+    height: 50px; /* Adjust the height as needed */
+    object-fit: cover;
+    border-radius: 50%; /* Optional: add border-radius for a circular image */
+}  
