@@ -92,3 +92,26 @@ input[type="file"] {
     flex-direction: column;
 }
 
+.box {
+    display: inline-flex;
+    height: 195px;
+    padding: 200px 52px 20px 52px;
+    flex-direction: column;
+    align-items: center;
+    gap: 35px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #3066BE;
+    box-shadow: 10px 9px 70px 0px rgba(36, 53, 62, 0.40);
+    margin: 0 30px;
+}
+
+
+
+.box-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Allow the boxes to wrap to the next line if needed */
+    margin-top: 2rem; /* Adjust the margin as needed */
+}
