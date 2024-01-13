@@ -1,12 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&family=Poppins:wght@100;300;400&family=Ubuntu&display=swap');
 
 :root {
-    --lightgreen: #fbfff1;
-    --darkgrey: #3c3744;
-    --darkblue: #090c9b;
-    --blue: #3066be;
-    font-family: 'Ubuntu', sans-serif;
-}
+    --lightgreen: #fbfff1; 
+    background: linear-gradient(135deg, rgb(86, 170, 117) 10%, rgb(14, 92, 173) 100%);
+      font-family: 'Roboto Condensed';
+  }
 
 body {
     background-image: linear-gradient(to bottom, var(--blue), var(--darkblue));
@@ -101,7 +99,7 @@ hr {
   }
 
   footer {
-    background-color: #333;
+    background-color: #0c305b;
     color: white;
     text-align: center;
     position: fixed;
