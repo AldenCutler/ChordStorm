@@ -6,6 +6,7 @@
       font-family: 'Roboto Condensed';
   }
 
+  
 body {
     background-image: linear-gradient(to bottom, var(--blue), var(--darkblue));
     background-repeat: no-repeat;
