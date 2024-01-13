@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&family=Poppins:wght@100;300;400&family=Ubuntu&display=swap');
+
+:root {
+    --lightgreen: #fbfff1;
+    --darkgrey: #3c3744;
+    --darkblue: #090c9b;
+    --blue: #3066be;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+body {
+    background-image: linear-gradient(to bottom, var(--blue), var(--darkblue));
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+    user-select: none;
+}
+
+hr {
+    width: 80%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--lightgreen);
+
+}
+
+.name {
+    text-align: center;
+    margin-top: 10rem;
+    font-size: 3rem;
+    color: var(--lightgreen);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10rem;
+}
+
+/* zip code input */
+.zip {
+    width: 13rem;
+    height: 4rem;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    font-size: 1.5rem;
+    padding-left: 1.5rem;
+    background-color: var(--lightgreen);
+}
+
+svg {
+    width: 4rem;
+    height: 4rem;
+    fill: var(--lightgreen);
+    margin-left: 1rem;
+}
+
+.search {
+    display: flex;
+}
+
+.upload {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--lightgreen);
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    width: 13rem;
+    height: 4rem;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    font-size: 1.5rem;
+    /* padding-left: 1.5rem; */
+    background-color: var(--lightgreen);
+    /* margin-top: 2rem; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
