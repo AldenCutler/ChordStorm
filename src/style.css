@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&family=Poppins:wght@100;300;400&family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=MuseoModerno:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
     --lightgreen: #fbfff1;
     --darkgrey: #3c3744;
     --darkblue: #090c9b;
     --blue: #3066be;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Roboto Condensed';
 }
 
 body {
@@ -17,12 +17,19 @@ body {
     user-select: none;
 }
 
-hr {
-    width: 80%;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    border: 1px solid var(--lightgreen);
+.dot {
+    width: 100%;
+    height: 300px; /* Adjust the height as needed */
+    background-color: #00A97F; /* Replace with your desired background color */
+    border-radius: 0 0 50% 50%; /* This creates the semi-circle shape */
+    position: absolute;
+    left:0;
+    top:0;
+    z-index: -1;
+  }
 
+.vertLine{
+    transform: rotateX(180deg)
 }
 
 .name {
@@ -34,64 +41,224 @@ hr {
 
 .container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 10rem;
+    align-items: flex-start;
+    justify-content: space-around; /* Adjust as needed */
+    width: 50%; /* Adjust as needed */
+    margin: 0 auto; /* Center the container horizontally */
+    position:relative;
 }
-
-/* zip code input */
-.zip {
-    width: 13rem;
-    height: 4rem;
-    border-radius: 30px;
+/* zip code input, designed by uiverse @joe-watson-sbf, yet it was modified */
+.input-container {
+    position: relative;
+    margin: 0px 0px 00px 100px;
+    width: 250px;
+    order:1;
+  }
+  
+  .input-container input[type="text"] {
+    font-size: 35px;
+    color: rgb(255, 255, 255);
     border: none;
+    border-bottom: 2px solid #a5a2a2;
     outline: none;
-    font-size: 1.5rem;
-    padding-left: 1.5rem;
-    background-color: var(--lightgreen);
+    width: 99%;
+    background-color: transparent;
+  }
+  
+  .label {
+    transition: all 0.3s ease;
+    color: #d3d2d2;
+    position: absolute;
+    top: 0;
+    left: 10px;
+    pointer-events: none;
+    font-size: 30px;
+  }
+  
+  .input-container input[type="text"]:focus~.label,
+          .input-container input[type="text"]:valid~.label {
+    top: -45px;
+    transition: .3s;
+    color: rgb(180, 197, 228);
+    left: 10px;
+  }
+  
+  .input-container .underline {
+    position: absolute;
+    bottom: 4px;
+    height: 2px;
+    width: 100%;
+    background-color: rgb(180, 197, 228);
+    transform: scaleX(0);
+  }
+  
+  .input-container .sideline {
+    position: relative;
+    bottom: 25px;
+    right: 9.5%;
+    height: 2px;
+    width: 19%;
+    background-color: rgb(180, 197, 228);
+    transform: scaleX(0);
+    rotate: 90deg;
+  }
+  
+  .input-container .upperline {
+    position: absolute;
+    bottom: 50px;
+    height: 2px;
+    width: 100%;
+    background-color: rgb(180, 197, 228);
+    transform: scaleX(0);
+  }
+  
+  .input-container .line {
+    position: relative;
+    bottom: 27px;
+    left: 90.5%;
+    height: 2px;
+    width: 19%;
+    background-color: rgb(180, 197, 228);
+    transform: scaleX(0);
+    rotate: 90deg;
+  }
+  
+  .input-container input[type="text"]:focus~.underline,
+          .input-container input[type="text"]:valid~.underline {
+    transform: scaleX(1);
+    transition: 1s;
+  }
+  
+  .input-container input[type="text"]:focus~.sideline,
+          .input-container input[type="text"]:valid~.sideline {
+    transform: scaleX(1);
+    transition: 1s;
+  }
+  
+  .input-container input[type="text"]:focus~.upperline,
+          .input-container input[type="text"]:valid~.upperline {
+    transform: scaleX(1);
+    transition: 1s;
+  }
+  
+  .input-container input[type="text"]:focus~.line,
+          .input-container input[type="text"]:valid~.line {
+    transform: scaleX(1);
+    transition: 1s;
+  }
+  /* Slash for seperation */
+  .slash {
+    position: absolute;
+    top: 0;
+    width: 1px;
+    height: 100%;
+    background-color: rgb(251, 255, 241);
+    transform: rotate(45deg);
 }
 
+  /* This will be spotify button */
+  .button {
+    display: flex;
+    margin:100px 10px 100px 0px;
+    background-color: #00DA5A;
+    color: #ffffff;
+    padding: 0.5rem 1.4rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 700;
+    text-align: center;
+    vertical-align: middle;
+    align-items: center;
+    border-radius: 0.5rem;
+    gap: 0.75rem;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: .6s ease;
+    order:3;
+
+  }
+  
+  .button svg {
+    height: 30px;
+  }
+  
+  .button:hover {
+    box-shadow: none;
+  }
+  
+  /* This is the generate Music button made by nikk700 but modified by Tune Cast*/
+  .generateContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative;
+  }
+  .generateMusic {
+    --color: #00A97F;
+    padding: 0.8em 1.7em;
+    background-color: transparent;
+    border-radius: .3em;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: .1s;
+    font-weight: 400;
+    font-size: 40px;
+    border: 1px solid;
+    font-family: inherit;
+    text-transform: uppercase;
+    color: var(--color);
+    z-index: 1;
+   }
+   
+   .generateMusic::before, .generateMusic::after {
+    content: '';
+    display: block;
+    width: 50%;
+    height: 50%;
+    left:100%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    border-radius: 100%;
+    z-index: -1;
+    background-color: var(--color);
+    transition: 1s ease;
+   }
+   
+   .generateMusic::before {
+    top: -1em;
+    left: 50%;
+    right: 1em;
+   }
+   
+   .generateMusic::after {
+    left: calc(50%);
+    right: calc(100%);
+    top: calc(100% + 1em);
+   }
+   
+   .generateMusic:hover::before, .generateMusic:hover::after {
+    height: 500px;
+    width: 800px;
+   }
+   
+   .generateMusic:hover {
+    color: rgb(10, 25, 30);
+   }
+   
+   .generateMusic:active {
+    filter: brightness(.8);
+   }
+      
+/* ---------------------------------------------------- */   
 svg {
-    width: 4rem;
-    height: 1.5rem;
-    fill: var(--lightgreen);
-    margin-left: 1rem;
+  width: 4rem;
+  height: 1.5rem;
+  fill: var(--lightgreen);
+  margin-left: 1rem;
 }
-
-.search {
-    display: flex;
-}
-
-.upload {
-    margin-top: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-color: var(--lightgreen);
-}
-
-input[type="file"] {
-    display: none;
-}
-
-.custom-file-upload {
-    width: 13rem;
-    height: 4rem;
-    border-radius: 30px;
-    border: none;
-    outline: none;
-    font-size: 1.5rem;
-    /* padding-left: 1.5rem; */
-    background-color: var(--lightgreen);
-    /* margin-top: 2rem; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
 
 footer {
     background-color: #333;
