@@ -54,7 +54,7 @@ hr {
 
 svg {
     width: 4rem;
-    height: 4rem;
+    height: 1.5rem;
     fill: var(--lightgreen);
     margin-left: 1rem;
 }
@@ -92,26 +92,229 @@ input[type="file"] {
     flex-direction: column;
 }
 
-.box {
-    display: inline-flex;
-    height: 195px;
-    padding: 200px 52px 20px 52px;
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    margin-right: 50px;
+    /* Add left margin as needed */
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.cardContainer {
+    width: fit-content;
+    position: absolute; /* Change to absolute */
+    top: 60%; /* Add this */
+    left: 30%; /* Add this */
+    transform: translate(-50%, -50%); /* Add this */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    position: relative;
+    width: 220px;
+    height: 250px;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 35px;
-    flex-shrink: 0;
-    border-radius: 20px;
-    background: #3066BE;
-    box-shadow: 10px 9px 70px 0px rgba(36, 53, 62, 0.40);
-    margin: 0 30px;
+    justify-content: space-between;
+    padding: 20px 10px;
+    border-radius: 10px;
+    backdrop-filter: blur(30px);
+    background-color: rgba(65, 65, 65, 0.308);
+    border: 1px solid rgba(255, 255, 255, 0.089);
+    cursor: pointer;
 }
 
+.city {
+    font-weight: 700;
+    font-size: 0.9em;
+    letter-spacing: 1.2px;
+    color: white;
+}
 
+.weather {
+    font-weight: 500;
+    font-size: 0.7em;
+    letter-spacing: 1.2px;
+    color: rgb(197, 197, 197);
+}
 
-.box-container {
+.temp {
+    font-size: 1.8em;
+    color: white;
+}
+
+.minmaxContainer {
+    width: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
-    flex-wrap: wrap; /* Allow the boxes to wrap to the next line if needed */
-    margin-top: 2rem; /* Adjust the margin as needed */
+    justify-content: space-between;
 }
+
+.min,
+.max {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0px 20px;
+    gap: 4px;
+}
+
+.max {
+    align-items: flex-start;
+    border-left: 2px solid white;
+}
+
+.maxHeading,
+.minHeading {
+    font-size: 0.7em;
+    font-weight: 600;
+    color: white;
+}
+
+.maxTemp,
+.minTemp {
+    font-size: 0.6em;
+    font-weight: 500;
+    color: rgb(197, 197, 197);
+}
+
+.cardContainer::before {
+    width: 100px;
+    height: 100px;
+    content: "";
+    position: absolute;
+    background-color: rgb(144, 161, 255);
+    z-index: -1;
+    border-radius: 50%;
+    left: 100px;
+    top: 50px;
+    transition: all 1s;
+}
+
+.cardContainer:hover::before {
+    transform: translate(-50px, 50px);
+}
+
+.audio-player {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    background-color: #282828;
+    border-radius: 8px;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+
+  .audio-player-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30vh;
+    margin-left: 20%;
+}
+
+  .album-cover {
+    width: 64px;
+    height: 64px;
+    background-color: #fff;
+    border-radius: 50%;
+    margin-right: 12px;
+  }
+  
+  .player-controls {
+    flex-grow: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .song-info {
+    margin-bottom: 4px;
+  }
+  
+  .song-title {
+    font-size: 16px;
+    color: #fff;
+    margin: 0;
+  }
+  
+  .artist {
+    font-size: 12px;
+    color: #b3b3b3;
+    margin: 0;
+  }
+  
+  .progress-bar {
+    width: 100%;
+    height: 4px;
+    background-color: #4f4f4f;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  
+  .progress {
+    width: 50%;
+    height: 100%;
+    background-color: #1db954;
+    transform-origin: left;
+    animation: progress-animation 10s linear infinite;
+  }
+  
+  .buttons {
+    display: flex;
+  }
+  
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .play-btn,
+  .pause-btn {
+    font-size: 16px;
+    color: #fff;
+    margin-right: 8px;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .play-btn:hover,
+  .pause-btn:hover {
+    transform: scale(1.2);
+  }
+  
+  @keyframes progress-animation {
+    0% {
+      transform: scaleX(0);
+    }
+  
+    100% {
+      transform: scaleX(1);
+    }
+  }
+  
