@@ -119,8 +119,8 @@ hr {
 a {
     color: white;
     text-decoration: none;
-    margin-right: 50px;
-    /* Add left margin as needed */
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 a:hover {
@@ -132,4 +132,10 @@ a:hover {
     height: 50px; /* Adjust the height as needed */
     object-fit: cover;
     border-radius: 50%; /* Optional: add border-radius for a circular image */
+}
+
+.iconContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
