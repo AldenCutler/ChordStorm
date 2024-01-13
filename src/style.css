@@ -1,10 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=MuseoModerno:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
-    --lightgreen: #fbfff1;
-    --darkgrey: #3c3744;
-    --darkblue: #090c9b;
-    --blue: #3066be;
+  --lightgreen: #fbfff1; 
+  background: linear-gradient(135deg, rgb(86, 170, 117) 10%, rgb(14, 92, 173) 100%);
     font-family: 'Roboto Condensed';
 }
 
@@ -16,17 +14,7 @@ body {
     margin: 0;
     user-select: none;
 }
-/* This is the semi circle at the top of the landing page */
-.dot {
-    width: 100%;
-    height: 300px; /* Adjust the height as needed */
-    background-color: #00A97F; /* Replace with your desired background color */
-    border-radius: 0 0 50% 50%; /* This creates the semi-circle shape */
-    position: absolute;
-    left:0;
-    top:0;
-    z-index: -1;
-  }
+
 
   /*Header info */
   .header-content{
@@ -307,7 +295,7 @@ svg {
 }
 
 footer {
-    background-color: #333;
+    background-color: #0c305b;
     color: white;
     text-align: center;
     position: absolute;
@@ -534,8 +522,8 @@ a:hover {
   }
   
   .footer-image {
-    width: 50px; /* Adjust the width as needed */
-    height: 50px; /* Adjust the height as needed */
+    width:80px; /* Adjust the width as needed */
+    height: 80px; /* Adjust the height as needed */
     object-fit: cover;
     border-radius: 50%; /* Optional: add border-radius for a circular image */
 }  
