@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recommendations</title>
+</head>
+<body>
+    <h1>Here are your song recommendations:</h1>
+    {% for message in recommendations %}
+    <div>{{ message }}</div>
+    <div>{{ "" }}</div>
+    {% else %}
+    <div>No messages found.</div>
+    {% endfor %}
+</body>
+</html>
