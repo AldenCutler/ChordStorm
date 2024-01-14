@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link type="text/css" rel="stylesheet" href="about.css">
+    <link type="text/css" rel="stylesheet" href="{{url_for('static', filename='css/about.css')}}">
     <title>GoatHacks 2024 Main</title>
 </head>
 
@@ -22,7 +22,7 @@
                             <circle cx="12" cy="12" r="12" />
                         </clipPath>
                     </defs>
-                    <image href="images\mahit1.png" x="0" y="0" width="24" height="24" clip-path="url(#circleClip)" />
+                    <image href="{{url_for('static', filename='images/mahit1.png')}}" x="0" y="0" width="24" height="24" clip-path="url(#circleClip)" />
                 </svg>
                 
                 
@@ -32,7 +32,7 @@
 
                 <div class="iconContainer">
                     <a href="https://www.linkedin.com/in/mahit-verma/" target="_blank">
-                        <img src="images/linkedin-app-white-icon (1).png" alt="LinkedIn" height="30" width="30" class="icon">
+                        <img src="{{url_for('static', filename='images/linkedin.png')}}" alt="LinkedIn" height="30" width="30" class="icon">
                     </a>
                     
     
@@ -58,7 +58,7 @@
                             <circle cx="12" cy="12" r="12" />
                         </clipPath>
                     </defs>
-                    <image href="images\abhi.png" x="0" y="0" width="24" height="24" clip-path="url(#circleClip)" />
+                    <image href="{{url_for('static', filename='images/abhi.png')}}" x="0" y="0" width="24" height="24" clip-path="url(#circleClip)" />
                 </svg>
                 
                 
@@ -68,7 +68,7 @@
 
                 <div class="iconContainer">
                     <a href="https://www.linkedin.com/in/abhiram-yammanuru/" target="_blank">
-                        <img src="images/linkedin-app-white-icon (1).png" alt="LinkedIn" height="30" width="30" class="icon">
+                        <img src="{{url_for('static', filename='images/linkedin.png')}}" alt="LinkedIn" height="30" width="30" class="icon">
                     </a>
                     
     
@@ -94,7 +94,7 @@
                             <circle cx="12" cy="12" r="12" />
                         </clipPath>
                     </defs>
-                    <image href="images\alden.jpeg" x="0" y="0" width="24" height="24" clip-path="url(#circleClip)" />
+                    <image href="{{url_for('static', filename='images/alden.jpeg')}}" x="0" y="0" width="24" height="24" clip-path="url(#circleClip)" />
                 </svg>
                 
                 
@@ -104,7 +104,7 @@
 
                 <div class="iconContainer">
                     <a href="https://www.linkedin.com/in/aldencutler/" target="_blank">
-                        <img src="images/linkedin-app-white-icon (1).png" alt="LinkedIn" height="30" width="30" class="icon">
+                        <img src="{{url_for('static', filename='images/linkedin.png')}}" alt="LinkedIn" height="30" width="30" class="icon">
                     </a>
                     
     
@@ -130,7 +130,7 @@
                             <circle cx="12" cy="12" r="12" />
                         </clipPath>
                     </defs>
-                    <image href="images\ronit.png" x="0" y="0" width="24" height="24" clip-path="url(#circleClip)" />
+                    <image href="{{url_for('static', filename='images/ronit.png')}}" x="0" y="0" width="24" height="24" clip-path="url(#circleClip)" />
                 </svg>
                 
                 
@@ -140,7 +140,7 @@
 
                 <div class="iconContainer">
                     <a href="https://www.linkedin.com/in/ronitbanerjee02/" target="_blank">
-                        <img src="images/linkedin-app-white-icon (1).png" alt="LinkedIn" height="30" width="30" class="icon">
+                        <img src="{{url_for('static', filename='images/linkedin.png')}}" alt="LinkedIn" height="30" width="30" class="icon">
                     </a>
                     
     
@@ -166,7 +166,7 @@
                             <circle cx="12" cy="12" r="12" />
                         </clipPath>
                     </defs>
-                    <image href="images/square.png" x="0" y="0" width="24" height="24" clip-path="url(#circleClip)" />
+                    <image href="{{url_for('static', filename='images/square.png')}}" x="0" y="0" width="24" height="24" clip-path="url(#circleClip)" />
                 </svg>
                 
                 
@@ -176,7 +176,7 @@
 
                 <div class="iconContainer">
                     <a href="https://www.linkedin.com/in/zhangjason12/" target="_blank">
-                        <img src="images/linkedin-app-white-icon (1).png" alt="LinkedIn" height="30" width="30" class="icon">
+                        <img src="{{url_for('static', filename='images/linkedin.png')}}" alt="LinkedIn" height="30" width="30" class="icon">
                     </a>
                     
     
@@ -198,10 +198,10 @@
 
     <footer>
         <div class="footer-content">
-            <a href="index.html">
-                <img src="images\hacktyhon_logo.png" alt="Footer Image" class="footer-image">
+            <a href="{{url_for('index')}}">
+                <img src="{{url_for('static', filename='images/hacktyhon_logo.png')}}" alt="Footer Image" class="footer-image">
             </a>
-            <a href="about.html">About Us</a>
+            <a href="{{url_for('about')}}">About Us</a>
         </div>
     </footer>
 </body>
