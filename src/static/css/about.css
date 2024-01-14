@@ -3,7 +3,7 @@
 :root {
     --lightgreen: #fbfff1; 
     background: linear-gradient(135deg, rgb(86, 170, 117) 10%, rgb(14, 92, 173) 100%);
-      font-family: 'Roboto Condensed';
+      font-family: 'Roboto Condensed', sans-serif;
   }
 
   
