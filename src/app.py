@@ -7,6 +7,13 @@ from spotipy import Spotify
 from spotipy.oauth2 import SpotifyClientCredentials
 import time
 
+import openmeteo_requests
+from retry_requests import retry
+import requests_cache
+import pgeocode
+import pandas as pd
+import math
+
 app = Flask(__name__)
 
 OPENWEATHER_API_KEY = ''
@@ -35,7 +42,7 @@ End of Spotify Setup
 Start of GPT Assistant Setup
 """
 
-client = OpenAI(api_key="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")
+client = OpenAI(api_key="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")
 
 thread = client.beta.threads.create()
 
@@ -71,8 +78,11 @@ End of GPT Assistant Setup
 
 @app.route('/')
 def index():
-    text_to_display = "Welcome to Tunecast. <a href='/login'> Login with Spotify</a>"
-    return text_to_display
+    return render_template('index.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 @app.route('/login')
 def login():
@@ -190,18 +200,100 @@ def refresh_token():
         return redirect('/topTracks')
 
 @app.route('/get_recommendations')
-
 def get_recommendations():
-    # data = request.json
-    # zip_code = data.get('zip_code')
-    
-    weather = "rainy"
 
-    # # Weather Data
-    # weather_data = get_weather(zip_code)
+    # Get Zip Code from URL
+    zip = request.args.get('zip')
+    
+    # if user goes to /display without a zip code, redirect to the index page
+    if zip == None:
+        return redirect(url_for('index'))
+    # if no zip code is entered, return to the index page
+    # type(zip) is <str>, so len(zip) can check this
+    if len(zip) == 0:
+        return redirect(url_for('index'))
+    # check if the zip code is a number 
+    # 501 is the lowest zip code in the US, for an IRS office in Holtsville, NY.
+    # 99950 is the highest, belonging to Ketchikan, AK.
+    if not zip.isnumeric() or int(zip) > 99950 or int(zip) < 501:
+        return redirect(url_for('index'))
+    
+        
+    place_data = get_place_data(zip)
+    lat = place_data['latitude']
+    lon = place_data['longitude']
+    
+    weather_data = get_weather(lat, lon)
+    
+    # Icon Codes for the weather icons from fonts.google.com/icons
+    icon_codes = {
+        0: 'clear_day' if weather_data['current']['is_day'] else 'clear_night',
+        1: 'clear_day' if weather_data['current']['is_day'] else 'clear_night',
+        2: 'partly_cloudy_day' if weather_data['current']['is_day'] else 'partly_cloudy_night',
+        3: 'partly_cloudy_day' if weather_data['current']['is_day'] else 'partly_cloudy_night',
+        45: 'foggy',
+        48: 'foggy',
+        51: 'rainy',
+        53: 'rainy',
+        55: 'rainy',
+        56: 'rainy',
+        57: 'rainy',
+        61: 'rainy',
+        63: 'rainy',
+        65: 'rainy',
+        66: 'rainy',
+        67: 'rainy',
+        71: 'weather_snowy',
+        73: 'weather_snowy',
+        75: 'weather_snowy',
+        77: 'weather_snowy',
+        80: 'rainy',
+        81: 'rainy',
+        82: 'rainy',
+        85: 'weather_snowy',
+        86: 'weather_snowy',
+        95: 'thunderstorm',
+        96: 'thunderstorm',
+        99: 'thunderstorm',
+    }
+    # Sky Codes for the weather descriptions
+    sky_codes = {
+    0: 'Clear',
+    1: 'Mainly Clear',
+    2: 'Partly Cloudy',
+    3: 'Overcast',
+    45: 'Fog',
+    48: 'Freezing Fog',
+    51: 'Light Drizzle',
+    53: 'Drizzle',
+    55: 'Heavy Drizzle',
+    56: 'Light Freezing Drizzle',
+    57: 'Freezing Drizzle',
+    61: 'Light Rain',
+    63: 'Rain',
+    65: 'Heavy Rain',
+    66: 'Light Freezing Rain',
+    67: 'Freezing Rain',
+    71: 'Light Snow',
+    73: 'Snow',
+    75: 'Heavy Snow',
+    77: 'Snow Grains',
+    80: 'Light Showers',
+    81: 'Showers',
+    82: 'Heavy Showers',
+    85: 'Light Snow Showers',
+    86: 'Snow Showers',
+    95: 'Thunderstorm',
+    96: 'Thunderstorm with Light Hail',
+    99: 'Thunderstorm with Hail',
+}           
+
+    sky = sky_codes[weather_data['current']['weather_code']]
+    icon = icon_codes[weather_data['current']['weather_code']]
+    
     
     user_top_tracks = topSongs
-
+    weather = sky
     thread = client.beta.threads.create()
 
     message = client.beta.threads.messages.create(
@@ -232,15 +324,125 @@ def get_recommendations():
         print(message.role + ": " + message.content[0].text.value)
         parsed_messages.append(message.content[0].text.value)
         
-    return render_template('recommendations.html', recommendations = parsed_messages)
+    return render_template('main.html', weather_data = weather_data, place_data = place_data, sky = sky, icon = icon)
+
+
 
 def get_user_top_tracks():
     #abhi's stuff
     return "user's top tracks"
 
-def get_weather(zip_code):
-    #alden's stuff
-    return "weather data"
+
+def get_place_data(zip):
+    nomi = pgeocode.Nominatim('us')
+    return nomi.query_postal_code(zip)
+
+### For more information/docs: https://pypi.org/project/pgeocode/
+# This package "pgeocode" is used to get the latitude and longitude of a zip code
+# It currently supports 83 countries, but without a way to get the country code from the zip code, 
+# it would be significantly more complicated to use for countries other than the US.
+# @app.route('/display')
+def get_weather(lat, lon):
+        
+    if math.isnan(lat) or math.isnan(lon):
+        # return render_template('invalid.html')
+        return redirect(url_for('index'))
+    
+    if lat > 90 or lat < -90 or lon > 180 or lon < -180:
+        # return render_template('invalid.html')
+        return redirect(url_for('index'))
+    
+    # if the zip code is not a number,
+    # meaning pgeocode was unable to find the zip code in the US,
+    # show invalid zip code error
+    if not isinstance(lat, (int, float)) or not isinstance(lon, (int, float)):
+        # return render_template('invalid.html')
+        return redirect(url_for('index'))
+    
+    # get the weather data
+    weather_data = get_weather_data(lat, lon)
+    # print(weather_data)
+    
+    # render the weather template with the weather data
+    # return render_template('main.html', weather_data = weather_data, data = place_data, sky = sky, icon = icon)
+    return weather_data
+
+
+def get_weather_data(lat, lon):
+    
+    # Setup the Open-Meteo API client with cache and retry on error
+    cache_session = requests_cache.CachedSession('.cache', expire_after = 3600)
+    retry_session = retry(cache_session, retries = 5, backoff_factor = 0.2)
+    openmeteo = openmeteo_requests.Client(session = retry_session)
+
+    # Make sure all required weather variables are listed here
+    # The order of variables in hourly or daily is important to assign them correctly below
+    API_URL = "https://api.open-meteo.com/v1/forecast"
+    params = {
+        "latitude": lat,
+        "longitude": lon,
+        "current": ["temperature_2m", "is_day", "weather_code"],
+        # "hourly": ["uv_index", "is_day"],
+        "daily": ["temperature_2m_max", "temperature_2m_min"],
+        "temperature_unit": "fahrenheit",
+        "wind_speed_unit": "mph",
+        "precipitation_unit": "inch",
+        "timezone": "auto",
+        "forecast_days": 3,
+    }
+    
+    # Call the API
+    responses = openmeteo.weather_api(API_URL, params=params)
+
+    # Process first location. Add a for-loop for multiple locations or weather models
+    response = responses[0]
+    print(f"Coordinates {response.Latitude()}°E {response.Longitude()}°N")
+    print(f"Elevation {response.Elevation()} m asl")
+    print(f"Timezone {response.Timezone()} {response.TimezoneAbbreviation()}")
+    print(f"Timezone difference to GMT+0 {response.UtcOffsetSeconds()} s")
+
+    # Current values. The order of variables needs to be the same as requested.
+    # Current data updates every 15 minutes. Time zone is in GMT+0, so it needs to be converted to local time. 
+    # You can use response.UtcOffsetSeconds() to get the offset in seconds. 
+    current = response.Current()
+    time = current.Time() + response.UtcOffsetSeconds()
+    current_data = {
+        "date": pd.to_datetime(time, unit = "s"),
+        "temperature_2m": current.Variables(0).Value(),
+        "is_day": current.Variables(1).Value(),
+        "weather_code": current.Variables(2).Value(),
+    }
+    
+    # Process daily data. The order of variables needs to be the same as requested.
+    daily = response.Daily()
+    daily_temperature_2m_max = daily.Variables(0).ValuesAsNumpy()
+    daily_temperature_2m_min = daily.Variables(1).ValuesAsNumpy()
+
+    daily_data = {"date": pd.date_range(
+        start = pd.to_datetime(daily.Time(), unit = "s"),
+        end = pd.to_datetime(daily.TimeEnd(), unit = "s"),
+        freq = pd.Timedelta(seconds = daily.Interval()),
+        inclusive = "left"
+    )}
+    daily_data["temperature_2m_max"] = daily_temperature_2m_max
+    daily_data["temperature_2m_min"] = daily_temperature_2m_min
+    
+    data = {
+        'daily': daily_data,
+        'current': current_data
+    }
+    
+    return data
+
+
+
+
+
+
+
+
+
+
 
 def generate_recommendations(music_taste, weather_data):
     #ronit's stuff
