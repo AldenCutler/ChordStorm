@@ -312,6 +312,7 @@ a:hover {
 .spotLogo{
   max-width: 35px;
   margin-right: 10px;
+  border-radius: 20px;
 }
 
 .sideBySide{
