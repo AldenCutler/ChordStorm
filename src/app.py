@@ -6,13 +6,13 @@ from openai import OpenAI
 from spotipy import Spotify
 from spotipy.oauth2 import SpotifyClientCredentials
 import time
-
 import openmeteo_requests
 from retry_requests import retry
 import requests_cache
 import pgeocode
 import pandas as pd
 import math
+import re
 
 app = Flask(__name__)
 
@@ -28,6 +28,7 @@ app.secret_key = "fMyyn2dmoxkz9Vw0jlr34Xj67jNecPWj"
 
 CLIENT_ID = '83ac151be94a4c38a29d022078b7d965'
 CLIENT_SECRET = '31ec42c51a6f48428d65415e937d3d21'
+
 REDIRECT_URI = 'http://localhost:5000/callback'
 
 AUTH_URL = 'https://accounts.spotify.com/authorize'
@@ -42,43 +43,17 @@ End of Spotify Setup
 Start of GPT Assistant Setup
 """
 
-client = OpenAI(api_key="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")
+client = OpenAI(api_key="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")
 
-thread = client.beta.threads.create()
-
-message = client.beta.threads.messages.create(
-    thread_id=thread.id,
-    role="user",
-    content="It's rainy and I like the artist TWICE."
-)
-
-run = client.beta.threads.runs.create(
-    thread_id=thread.id,
-    assistant_id="asst_pwk8lo9P7abyLiOpdWb1dpAw"
-)
-
-run = client.beta.threads.runs.retrieve(
-    thread_id = thread.id,
-    run_id = run.id
-)
-
-messages = client.beta.threads.messages.list(
-    thread_id = thread.id
-)
-
-for message in reversed(messages.data):
-    print(message.role + ": " + message.content[0].text.value)
 
 """
 End of GPT Assistant Setup
 """
 
-# client_credentials_manager = SpotifyClientCredentials(client_id=SPOTIFY_CLIENT_ID, client_secret=SPOTIFY_CLIENT_SECRET)
-# sp = Spotify(client_credentials_manager=client_credentials_manager)
-
 @app.route('/')
 def index():
-    return render_template('index.html')
+    spotify_status = "Connect to Spotify to get started!"
+    return render_template('index.html', spotify_status = spotify_status)
 
 @app.route('/about')
 def about():
@@ -152,8 +127,10 @@ def get_topTracks():
         
         global topSongs
         topSongs = parsed_response_concatenated
+        
+        spotify_status = "Spotify is connected!"
 
-        return render_template('top_tracks.html', tracks = parsed_response_list)
+        return render_template('index.html', spotify_status = spotify_status)
 
     except requests.exceptions.RequestException as e:
         # Print the actual error message returned by the Spotify API
@@ -295,6 +272,7 @@ def get_recommendations():
     
     user_top_tracks = topSongs
     weather = sky
+    
     thread = client.beta.threads.create()
 
     message = client.beta.threads.messages.create(
@@ -325,13 +303,51 @@ def get_recommendations():
         print(message.role + ": " + message.content[0].text.value)
         parsed_messages.append(message.content[0].text.value)
         
-    return render_template('main.html', weather_data = weather_data, place_data = place_data, sky = sky, icon = icon)
+    print("I got to point 1, the len of messages is " + str(len(parsed_messages)))
+    
+    assistant_output = parsed_messages[len(parsed_messages) - 1]
+    
+    print("This is the assistant output: " + assistant_output)
+    
+    print("I got to point 2")
+    
+    paragraph, song_links = process_assistant_output(assistant_output)
+        
+    print("I got to point 3" + paragraph + str(song_links))
+        
+    return render_template('main.html', weather_data = weather_data, place_data = place_data, sky = sky, icon = icon, paragraph=paragraph, song_links=song_links)
 
+def process_assistant_output(assistant_output):
+    import re
+from spotipy.oauth2 import SpotifyClientCredentials
+from spotipy import Spotify
 
+def process_assistant_output(assistant_output):
+    
+    paragraph_pattern = r"^(.*?)The 5 songs for your tunecast are:"
+    paragraph_match = re.search(paragraph_pattern, assistant_output, re.DOTALL)
+    paragraph = paragraph_match.group(1).strip() if paragraph_match else ""
 
-def get_user_top_tracks():
-    #abhi's stuff
-    return "user's top tracks"
+    song_pattern = r'"(.*?)" by (.*?)(?:,|$)'
+    songs = re.findall(song_pattern, assistant_output)
+
+    client_credentials_manager = SpotifyClientCredentials(client_id=CLIENT_ID, client_secret=CLIENT_SECRET)
+    sp = Spotify(client_credentials_manager=client_credentials_manager)
+
+    song_links = []
+
+    for song, artists in songs:
+        query = f'track:{song} artist:{artists}'
+        results = sp.search(q=query, type='track', limit=1)
+
+        tracks = results.get('tracks', {}).get('items', [])
+        if tracks:
+            track_id = tracks[0].get('id')
+            embed_link = f"https://open.spotify.com/embed/track/{track_id}"
+            song_links.append(embed_link)
+
+    return paragraph, song_links
+
 
 
 def get_place_data(zip):
@@ -436,18 +452,6 @@ def get_weather_data(lat, lon):
     return data
 
 
-
-
-
-
-
-
-
-
-
-def generate_recommendations(music_taste, weather_data):
-    #ronit's stuff
-    return "recommendations"
 
 if __name__ == '__main__':
     app.run(debug=True)

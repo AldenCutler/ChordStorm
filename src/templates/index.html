@@ -21,7 +21,6 @@
         </a>
 
     </header>
-    <div class="dot"></div>
     <div class="name">
       <h1>Tune Cast</h1>
     </div>
@@ -42,6 +41,16 @@
         <div class="slash"></div>
 
         <!-- Spotify Button made by Yayal12085 -->
+        
+      </div>
+
+      <!-- For Displaying Results -->
+      <div class="generateContainer">
+        <button class="generateMusic"><input type="submit" id="submit" value="" style="display: none;" />Generate Music</button>
+      </div>
+    </form>
+
+      <a href="/login">
         <button class="button">
           <svg viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -53,14 +62,10 @@
                 </g>
               </g>
             </g>
-          </svg>Continue with Spotify
+          </svg>{{ spotify_status }}
         </button>
-      </div>
+        </a> 
 
-      <!-- For Displaying Results -->
-      <div class="generateContainer">
-        <button class="generateMusic"><input type="submit" id="submit" value="" style="display: none;" />Generate Music</button>
-      </div>
 
       <div class="aboutApp">
         <h1 class="name">About The App</h1>
@@ -69,7 +74,7 @@
       <div class="description">
         <p>Tune Cast has been made for WPI GoatHacks 2024. This app was made for different moods depending on the weather at your loaction. To use this app, you must import your zip code and login with your Spotify With this the app will be able to recommend you music based on your listening and the weather! The creators are Abhi Yammanuru, Alden Cutler, Jason Zhang, Mahit Verma, and Ronit Banerjee</p>
       </div>
-    </form>
+    
 
     <footer class="footerindex">
         <div class="footer-content">
