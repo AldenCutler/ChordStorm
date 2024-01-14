@@ -56,8 +56,8 @@
 
       <div class="spotifyRec">
         <div class="sideBySide">
-          <img src="{{ url_for('static', filename = 'images/spotifylogo.png') }}" class="spotLogo" />
-          <h2 class="recHead">Spotify Recommendations</h2>
+          <img src="{{ url_for('static', filename = 'images/hacktyhon_logo.png') }}" class="spotLogo" />
+          <h2 class="recHead">TuneCast Recommendations</h2>
         </div>
         {% for link in song_links %}
           <iframe style="border-radius:12px" src="{{ link }}?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
