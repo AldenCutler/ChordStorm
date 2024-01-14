@@ -22,35 +22,13 @@
 
     </header>
     <div class="name">
-      <h1>Tune Cast</h1>
+      <h1>TuneCast</h1>
     </div>
-    <form action="/get_recommendations" autocomplete="off">
-      <div class="container">
-        <!-- Search Container -->
-        <div class="input-container">
-          <input required id="input" name="zip" type="text" />
-          <label class="label" for="input">Zip Code</label>
-          <div class="underline"></div>
-          <div class="sideline"></div>
-          <div class="upperline"></div>
-          <div class="line"></div>
-          <label id="error-label"></label>
-        </div>
 
-        <!-- Slash to seperate the items -->
-        <div class="slash"></div>
+    <div class="zipAndSpot">
 
-        <!-- Spotify Button made by Yayal12085 -->
-        
-      </div>
-
-      <!-- For Displaying Results -->
-      <div class="generateContainer">
-        <button class="generateMusic"><input type="submit" id="submit" value="" style="display: none;" />Generate Music</button>
-      </div>
-    </form>
-
-      <a href="/login">
+      <div class="contSpot">
+      <a class="logBut" href="/login">
         <button class="button">
           <svg viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -64,11 +42,43 @@
             </g>
           </svg>{{ spotify_status }}
         </button>
-        </a> 
+        </a>
+      </div>
+
+
+
+
+
+    <form action="/get_recommendations" autocomplete="off">
+      <div class="container">
+        <!-- Search Container -->
+        <div class="input-container">
+          <input required id="input" name="zip" type="text" />
+          <label class="label" for="input">Zip Code</label>
+          <div class="underline"></div>
+          <div class="sideline"></div>
+          <div class="upperline"></div>
+          <div class="line"></div>
+          <label id="error-label"></label>
+        </div>
+
+        <!-- Spotify Button made by Yayal12085 -->
+        
+      </div>
+
+      <!-- For Displaying Results -->
+      <div class="generateContainer">
+        <button class="generateMusic"><input type="submit" id="submit" value="" style="display: none;" />Generate Music</button>
+      </div>
+    </form>
+
+ 
+
+    </div>
 
 
       <div class="aboutApp">
-        <h1 class="name">About The App</h1>
+        <h1 class="name2">About The App</h1>
       </div>
 
       <div class="description">
