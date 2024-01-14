@@ -136,13 +136,11 @@ def extract_all_songs_as_string(data):
     song_artist_list = []
     combined_string = ""
 
-    # Check if 'items' key exists and has data
     if 'items' in data and data['items']:
         for item in data['items']:
             song_name = item.get('name', 'Unknown Song')
             artist_names = [artist['name'] for artist in item.get('artists', []) if 'name' in artist]
 
-            # Combine song name with artist names using a pipe separator and add to the combined string
             song_artist = f"{song_name} | {', '.join(artist_names)}"
             song_artist_list.append(song_artist)
             combined_string += song_artist + "\n"
@@ -289,7 +287,9 @@ def get_recommendations():
         run_id = run.id
     )
     
-    time.sleep(20)
+    time.sleep(10)
+    
+    # The program will wait 10 seconds, as it takes time for the assistant to process the input and generate the output.
 
     messages = client.beta.threads.messages.list(
         thread_id = thread.id
@@ -301,15 +301,15 @@ def get_recommendations():
         print(message.role + ": " + message.content[0].text.value)
         parsed_messages.append(message.content[0].text.value)
         
-    print("I got to point 1, the len of messages is " + str(len(parsed_messages)))
+    # print("I got to point 1, the len of messages is " + str(len(parsed_messages)))
     
     assistant_output = parsed_messages[len(parsed_messages) - 1]
     
-    print("I got to point 2, this is the assistant output: " + assistant_output)
+    # print("I got to point 2, this is the assistant output: " + assistant_output)
     
     paragraph, song_links = process_assistant_output(assistant_output)
         
-    print("I got to point 3" + paragraph + str(song_links))
+    # print("I got to point 3" + paragraph + str(song_links))
         
     return render_template('main.html', weather_data = weather_data, place_data = place_data, sky = sky, icon = icon, paragraph=paragraph, song_links=song_links)
 
@@ -349,7 +349,7 @@ def get_place_data(zip):
 # This package "pgeocode" is used to get the latitude and longitude of a zip code
 # It currently supports 83 countries, but without a way to get the country code from the zip code, 
 # it would be significantly more complicated to use for countries other than the US.
-# @app.route('/display')
+
 def get_weather(lat, lon):
     
     if math.isnan(lat) or math.isnan(lon):
@@ -440,7 +440,6 @@ def get_weather_data(lat, lon):
     }
     
     return data
-
 
 
 if __name__ == '__main__':
