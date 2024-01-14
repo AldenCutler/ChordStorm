@@ -1,0 +1,331 @@
+@import url('https://fonts.googleapis.com/css2?family=MuseoModerno:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  --lightgreen: #fbfff1; 
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, rgb(86, 170, 117) 10%, rgb(14, 92, 173) 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+    user-select: none;
+}
+
+/*Header info */
+.header-content{
+  display: flex;
+  justify-content: flex-end; 
+  padding: 20px;
+}
+
+.name {
+    text-align: center;
+    margin-top: 5rem;
+    font-size: 3rem;
+    color: var(--lightgreen);
+}
+
+.container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly; /* Adjust as needed */
+    width: 50%; /* Adjust as needed */
+    margin: 0 auto; /* Center the container horizontally */
+    position:relative;
+}
+
+footer {
+    background-color: #0c305b;
+    color: white;
+    text-align: center;
+    position: relative;
+    top: 5vh;
+    width: 100%;
+}
+.footerindex{
+  position: relative;
+}
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    margin-right: 50px;
+    /* Add left margin as needed */
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.bigCard{
+  width: 10%;
+  height:157px;
+/*   margin-left: 20% */
+  transform: translateX(150%) translateY(145%);
+}
+
+.cardContainer {
+    width: fit-content; /* Change to absolute */
+    top: 60%; /* Add this */
+    left: 30%; /* Add this */
+    transform: translate(-50%, -43%); /* Add this */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+/*     position: relative; */
+    width: 274px;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(30px);
+    background-color: rgba(65, 65, 65, 0.308);
+    border: 1px solid rgba(255, 255, 255, 0.089);
+    cursor: pointer;
+}
+
+.city {
+    font-weight: 700;
+    font-size: 1.4em;
+    letter-spacing: 1.2px;
+    color: white;
+}
+
+.weather {
+    font-weight: 500;
+    font-size: 1.2em;
+    letter-spacing: 1.2px;
+    color: rgb(197, 197, 197);
+}
+
+#current-weather {
+    font-size: 2.5em;
+    color: white;
+}
+
+.temp {
+    font-size: 2.4em;
+    color: white;
+}
+
+.minmaxContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.min,
+.max {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0px 20px;
+/*     gap: 2px; */
+}
+
+.max {
+    align-items: flex-start;
+    border-left: 2px solid white;
+}
+
+.maxHeading,
+.minHeading {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: white;
+}
+
+.maxTemp,
+.minTemp {
+    font-size: 1.1em;
+    font-weight: 500;
+    color: rgb(197, 197, 197);
+}
+
+.cardContainer::before {
+    width: 100px;
+    height: 100px;
+    content: "";
+    position: absolute;
+    background-color: rgb(144, 161, 255);
+    z-index: -1;
+    border-radius: 50%;
+    left: 100px;
+    top: 50px;
+    transition: all 1s;
+}
+
+.cardContainer:hover::before {
+    transform: translate(-50px, 50px);
+}
+
+.audio-player {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    height: fit-content;
+    background-color: #282828;
+    border-radius: 8px;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+
+  .audio-player-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10vh;
+    margin-left: 20%;
+}
+
+  .album-cover {
+    width: 64px;
+    height: 64px;
+    background-color: #fff;
+    border-radius: 50%;
+    margin-right: 12px;
+  }
+  
+  .player-controls {
+    flex-grow: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .song-info {
+    margin-bottom: 4px;
+  }
+  
+  .song-title {
+    font-size: 16px;
+    color: #fff;
+    margin: 0;
+  }
+  
+  .artist {
+    font-size: 12px;
+    color: #b3b3b3;
+    margin: 0;
+  }
+  
+  .progress-bar {
+    width: 100%;
+    height: 4px;
+    background-color: #4f4f4f;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  
+  .progress {
+    width: 50%;
+    height: 100%;
+    background-color: #1db954;
+    transform-origin: left;
+    animation: progress-animation 10s linear infinite;
+  }
+  
+  .buttons {
+    display: flex;
+  }
+  
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .play-btn,
+  .pause-btn {
+    font-size: 16px;
+    color: #fff;
+    margin-right: 8px;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .play-btn:hover,
+  .pause-btn:hover {
+    transform: scale(1.2);
+  }
+  
+  @keyframes progress-animation {
+    0% {
+      transform: scaleX(0);
+    }
+  
+    100% {
+      transform: scaleX(1);
+    }
+  }
+  
+  .footer-image {
+    width:80px; /* Adjust the width as needed */
+    height: 80px; /* Adjust the height as needed */
+    object-fit: cover;
+    border-radius: 50%; /* Optional: add border-radius for a circular image */
+}  
+
+.mainContainer{
+  display: flex;
+  justify-content: space-between;
+  margin-left: 15%;
+  margin-right: 15%;
+  max-width: 100%;
+}
+
+/* Spotify Recomendations */
+
+.spotifyRec{
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Optional: center items horizontally */
+  background: black;
+  padding:15px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  height: min-content;
+}
+
+.recHead {
+  color: white;
+}
+
+.spotLogo{
+  max-width: 35px;
+  margin-right: 10px;
+}
+
+.sideBySide{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+}
+iframe{
+  max-height: 80px;
+  margin-bottom: 10px;
+}
+
+.text{
+  margin-left: 23%;
+  margin-right: 5%;
+  font-size: 1.5rem;
+}
