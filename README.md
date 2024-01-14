@@ -36,7 +36,7 @@
 <h3 align="center">TuneCast</h3>
 
   <p align="center">
-    TuneCast is a web app made for GoatHacks 2024 that recommends music based on the current weather and your listening history. 
+    TuneCast is a web app made for the GoatHacks 2024 Hackathon that recommends music based on the current weather and your listening history. 
     <br />
     <br />
     <br />
