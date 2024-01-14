@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Top Tracks</title>
+    <!-- Include styles for the button -->
+    <style>
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 20px 0;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Hey there! Your top tracks are:</h1>
+    {% for track in tracks %}
+    <div>{{ track }}</div>
+    {% else %}
+    <div>No tracks found.</div>
+    {% endfor %}
+
+    <!-- Link to Get Recommendations page -->
+    <a href='/get_recommendations' class="btn">Get Recommendations</a>
+</body>
+</html>
