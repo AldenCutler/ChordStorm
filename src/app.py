@@ -35,7 +35,7 @@ End of Spotify Setup
 Start of GPT Assistant Setup
 """
 
-client = OpenAI(api_key="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")
+client = OpenAI(api_key="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")
 
 thread = client.beta.threads.create()
 
