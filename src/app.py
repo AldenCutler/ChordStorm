@@ -270,11 +270,15 @@ def get_recommendations():
     weather = sky
     
     thread = client.beta.threads.create()
+    
+    now = datetime.now()
+    
+    current_time = now.strftime("%H:%M:%S")
 
     message = client.beta.threads.messages.create(
         thread_id=thread.id,
         role="user",
-        content="Current weather is " + weather + ". The user's top 50 latest songs are, in format Songname | Artist1, Artist2,...: " + topSongs
+        content="The time is " + current_time + " and the weather is " + weather + ". The user's top 50 latest songs are, in format Songname | Artist1, Artist2,...: " + topSongs
     )
 
     run = client.beta.threads.runs.create(
