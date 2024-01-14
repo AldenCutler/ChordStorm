@@ -179,7 +179,6 @@ def refresh_token():
 
 @app.route('/get_recommendations')
 def get_recommendations():
-
     # Get Zip Code from URL
     zip = request.args.get('zip')
     
@@ -200,74 +199,79 @@ def get_recommendations():
     place_data = get_place_data(zip)
     lat = place_data['latitude']
     lon = place_data['longitude']
+    print(lat, lon)
+    weather_data = {}
+    sky = ""
+    icon = ""
+    try:
+        weather_data = get_weather(lat, lon)
+        # Icon Codes for the weather icons from fonts.google.com/icons
+        icon_codes = {
+            0: 'clear_day' if weather_data['current']['is_day'] else 'clear_night',
+            1: 'clear_day' if weather_data['current']['is_day'] else 'clear_night',
+            2: 'partly_cloudy_day' if weather_data['current']['is_day'] else 'partly_cloudy_night',
+            3: 'partly_cloudy_day' if weather_data['current']['is_day'] else 'partly_cloudy_night',
+            45: 'foggy',
+            48: 'foggy',
+            51: 'rainy',
+            53: 'rainy',
+            55: 'rainy',
+            56: 'rainy',
+            57: 'rainy',
+            61: 'rainy',
+            63: 'rainy',
+            65: 'rainy',
+            66: 'rainy',
+            67: 'rainy',
+            71: 'weather_snowy',
+            73: 'weather_snowy',
+            75: 'weather_snowy',
+            77: 'weather_snowy',
+            80: 'rainy',
+            81: 'rainy',
+            82: 'rainy',
+            85: 'weather_snowy',
+            86: 'weather_snowy',
+            95: 'thunderstorm',
+            96: 'thunderstorm',
+            99: 'thunderstorm',
+        }
+        # Sky Codes for the weather descriptions
+        sky_codes = {
+            0: 'Clear',
+            1: 'Mainly Clear',
+            2: 'Partly Cloudy',
+            3: 'Overcast',
+            45: 'Fog',
+            48: 'Freezing Fog',
+            51: 'Light Drizzle',
+            53: 'Drizzle',
+            55: 'Heavy Drizzle',
+            56: 'Light Freezing Drizzle',
+            57: 'Freezing Drizzle',
+            61: 'Light Rain',
+            63: 'Rain',
+            65: 'Heavy Rain',
+            66: 'Light Freezing Rain',
+            67: 'Freezing Rain',
+            71: 'Light Snow',
+            73: 'Snow',
+            75: 'Heavy Snow',
+            77: 'Snow Grains',
+            80: 'Light Showers',
+            81: 'Showers',
+            82: 'Heavy Showers',
+            85: 'Light Snow Showers',
+            86: 'Snow Showers',
+            95: 'Thunderstorm',
+            96: 'Thunderstorm with Light Hail',
+            99: 'Thunderstorm with Hail',
+    }           
     
-    weather_data = get_weather(lat, lon)
-    
-    # Icon Codes for the weather icons from fonts.google.com/icons
-    icon_codes = {
-        0: 'clear_day' if weather_data['current']['is_day'] else 'clear_night',
-        1: 'clear_day' if weather_data['current']['is_day'] else 'clear_night',
-        2: 'partly_cloudy_day' if weather_data['current']['is_day'] else 'partly_cloudy_night',
-        3: 'partly_cloudy_day' if weather_data['current']['is_day'] else 'partly_cloudy_night',
-        45: 'foggy',
-        48: 'foggy',
-        51: 'rainy',
-        53: 'rainy',
-        55: 'rainy',
-        56: 'rainy',
-        57: 'rainy',
-        61: 'rainy',
-        63: 'rainy',
-        65: 'rainy',
-        66: 'rainy',
-        67: 'rainy',
-        71: 'weather_snowy',
-        73: 'weather_snowy',
-        75: 'weather_snowy',
-        77: 'weather_snowy',
-        80: 'rainy',
-        81: 'rainy',
-        82: 'rainy',
-        85: 'weather_snowy',
-        86: 'weather_snowy',
-        95: 'thunderstorm',
-        96: 'thunderstorm',
-        99: 'thunderstorm',
-    }
-    # Sky Codes for the weather descriptions
-    sky_codes = {
-    0: 'Clear',
-    1: 'Mainly Clear',
-    2: 'Partly Cloudy',
-    3: 'Overcast',
-    45: 'Fog',
-    48: 'Freezing Fog',
-    51: 'Light Drizzle',
-    53: 'Drizzle',
-    55: 'Heavy Drizzle',
-    56: 'Light Freezing Drizzle',
-    57: 'Freezing Drizzle',
-    61: 'Light Rain',
-    63: 'Rain',
-    65: 'Heavy Rain',
-    66: 'Light Freezing Rain',
-    67: 'Freezing Rain',
-    71: 'Light Snow',
-    73: 'Snow',
-    75: 'Heavy Snow',
-    77: 'Snow Grains',
-    80: 'Light Showers',
-    81: 'Showers',
-    82: 'Heavy Showers',
-    85: 'Light Snow Showers',
-    86: 'Snow Showers',
-    95: 'Thunderstorm',
-    96: 'Thunderstorm with Light Hail',
-    99: 'Thunderstorm with Hail',
-}           
-
-    sky = sky_codes[weather_data['current']['weather_code']]
-    icon = icon_codes[weather_data['current']['weather_code']]
+        sky = sky_codes[weather_data['current']['weather_code']]
+        icon = icon_codes[weather_data['current']['weather_code']]
+    except TypeError:
+        redirect(url_for('index'))
     
     
     user_top_tracks = topSongs
@@ -307,9 +311,7 @@ def get_recommendations():
     
     assistant_output = parsed_messages[len(parsed_messages) - 1]
     
-    print("This is the assistant output: " + assistant_output)
-    
-    print("I got to point 2")
+    print("I got to point 2, this is the assistant output: " + assistant_output)
     
     paragraph, song_links = process_assistant_output(assistant_output)
         
@@ -317,18 +319,13 @@ def get_recommendations():
         
     return render_template('main.html', weather_data = weather_data, place_data = place_data, sky = sky, icon = icon, paragraph=paragraph, song_links=song_links)
 
-def process_assistant_output(assistant_output):
-    import re
-from spotipy.oauth2 import SpotifyClientCredentials
-from spotipy import Spotify
 
 def process_assistant_output(assistant_output):
-    
     paragraph_pattern = r"^(.*?)The 5 songs for your tunecast are:"
     paragraph_match = re.search(paragraph_pattern, assistant_output, re.DOTALL)
     paragraph = paragraph_match.group(1).strip() if paragraph_match else ""
 
-    song_pattern = r'"(.*?)" by (.*?)(?:,|$)'
+    song_pattern = r'"(.*?)" by (.*?)(?=$|\n)'
     songs = re.findall(song_pattern, assistant_output)
 
     client_credentials_manager = SpotifyClientCredentials(client_id=CLIENT_ID, client_secret=CLIENT_SECRET)
