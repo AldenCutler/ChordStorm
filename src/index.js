@@ -1,12 +1,13 @@
+const input = document.getElementById('input');
 function checkZipCode() {
-    const zip = document.getElementById('input').value;
+    let zip = input.value;
     const zipRegex = /^\d{5}$/;
     const zipValid = zipRegex.test(zip);
     const errorLabel = document.getElementById('error-label');
     errorLabel.style.position = 'absolute';
-    errorLabel.style.color = 'red';
+    errorLabel.style.color = '#ffaaaa';
 
-    if (zipValid) {
+    if (zipValid || zip === '') {
         errorLabel.innerText = '';
     }
     else {
@@ -14,4 +15,4 @@ function checkZipCode() {
     }
 }
 
-setInterval(checkZipCode, 50);
+input.addEventListener('keyup', setInterval(checkZipCode, 100));
