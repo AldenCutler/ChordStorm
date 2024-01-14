@@ -11,13 +11,14 @@
   </head>
   <body>
     <header class="header-content">
-      <a href="https://open.spotify.com/" target="_blank"><img src="{{ url_for('static', filename = 'images/spotifylogo.png') }}" class="footer-image" style="margin-right: 20px;" /></a>
-      <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename = 'images/hacktyhon_logo.png') }}" alt="Footer Image" class="footer-image" /></a>
+      <a href="https://open.spotify.com/" target="_blank"><img src="{{ url_for('static', filename = 'images/spotifylogo.png') }}" class="header-image" style="margin-right: 20px;" /></a>
+      <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename = 'images/hacktyhon_logo.png') }}" alt="Footer Image" class="header-image" /></a>
     </header>
     <div class="name">
       <h1>TuneCast</h1>
     </div>
-
+    
+    <!-- Spotify Button made by Yayal12085 -->
     <div class="zipAndSpot">
       <div class="contSpot">
         <a href="/login">
@@ -41,7 +42,7 @@
         <div class="container">
           <!-- Search Container -->
           <div class="input-container">
-            <label class="label" for="input">Zip Code</label>
+            <label class="label" for="input">Zip Code:</label>
             <input required id="input" name="zip" type="text" />
             <div class="underline"></div>
             <div class="sideline"></div>
@@ -50,7 +51,6 @@
             <label id="error-label"></label>
           </div>
 
-          <!-- Spotify Button made by Yayal12085 -->
         </div>
 
         <!-- For Displaying Results -->
