@@ -289,7 +289,7 @@ def get_recommendations():
     
     time.sleep(10)
     
-    # The program will wait 10 seconds, as it takes time for the assistant to process the input and generate the output.
+    # The program will wait 10 seconds, as it takes time for the assistant to process the input and generate the output
 
     messages = client.beta.threads.messages.list(
         thread_id = thread.id
