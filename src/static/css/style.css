@@ -27,7 +27,9 @@ body {
 .contSpot {
   display: flex;
   align-items: center;
-  left: 40%;
+  justify-content: center;
+  text-align: center;
+  /* left: 40%; */
   width: 100%
 }
 
@@ -39,10 +41,6 @@ body {
   background: none;
   font-weight: 900;
   font-family: inherit;
-}
-
-.spotifyButton::before {
-  margin-left: auto;
 }
 
 .spotifyButton::after,
@@ -63,41 +61,46 @@ body {
 
 .name {
   text-align: center;
-  margin-top: 2rem;
+  width: 100%;
+  /* margin-top: 2rem; */
   font-size: 3rem;
   color: var(--lightgreen);
 }
 
 .name2 {
   text-align: center;
-  margin-top: 15rem;
+  margin-top: 20rem;
   font-size: 3rem;
   color: var(--lightgreen);
   padding-top: 5%;
 }
 
 .container {
-  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  /* display: flex;
   align-items: flex-start;
-  justify-content: space-evenly;
+  justify-content: space-evenly; */
   /* Adjust as needed */
-  margin: 0 auto;
+  /* margin: 0 auto; */
   /* Center the container horizontally */
-  position: absolute;
-  right: 60%;
-  top: 45%;
 }
 
 /* zip code input, designed by uiverse @joe-watson-sbf, yet it was modified */
 .input-container {
-  position: absolute;
+  /* position: absolute; */
   width: 250px;
   order: 1;
   top: 40%;
-  left: 50%;
+  /* left: 50%; */
   /* translate(-130%, 70%); */
-  margin: 19px -50% 55px 55px;
+  /* margin: 19px -50% 55px 55px; */
+  margin-top: 3rem;
   align-items: center;
+  justify-content: center;
+  align-self: center;
 }
 
 .input-container input[type="text"] {
@@ -108,62 +111,70 @@ body {
   outline: none;
   width: 99%;
   background-color: transparent;
-  right: 150%;
+  /* right: 150%; */
 }
 
 .label {
   transition: all 0.3s ease;
   color: #d3d2d2;
-  position: absolute;
-  top: 0;
+  position: relative;
+  top: 40px;
   left: 10px;
   pointer-events: none;
+  /* margin-bottom: 30px; */
   font-size: 30px;
 }
 
-.input-container input[type="text"]:focus~.label,
-.input-container input[type="text"]:valid~.label {
-  top: -45px;
-  transition: .3s;
-  color: rgb(180, 197, 228);
+
+
+.input-container input:focus~.label,
+.input-container input:valid~.label {
+  /* position: relative; */
+  /* color: rgb(180, 197, 228); */
   left: 10px;
+  top: 0px;
+  bottom: 20px;
+  transition: .3s;
 }
 
 .input-container .underline {
-  position: absolute;
+  position: relative;
   bottom: 4px;
   height: 2px;
-  width: 100%;
+  
+  width: 100.5%;
   background-color: rgb(180, 197, 228);
   transform: scaleX(0);
 }
 
 .input-container .sideline {
   position: relative;
-  bottom: 25px;
-  right: 9.5%;
+  bottom: 29px;
+  right: 24px;
+  /* left: 1px; */
   height: 2px;
-  width: 19%;
+  width: 20%;
   background-color: rgb(180, 197, 228);
   transform: scaleX(0);
   rotate: 90deg;
 }
 
 .input-container .upperline {
-  position: absolute;
-  bottom: 50px;
+  position: relative;
+  bottom: 55px;
+  /* top: 50px; */
   height: 2px;
-  width: 100%;
+  width: 100.5%;
   background-color: rgb(180, 197, 228);
   transform: scaleX(0);
 }
 
 .input-container .line {
   position: relative;
-  bottom: 27px;
-  left: 90.5%;
+  bottom: 33px;
+  left: 227px;
   height: 2px;
-  width: 19%;
+  width: 20%;
   background-color: rgb(180, 197, 228);
   transform: scaleX(0);
   rotate: 90deg;
@@ -197,18 +208,16 @@ body {
 /* This will be spotify button */
 .button {
   display: flex;
-  margin: 170px 0px 40px 0px;
   background-color: #00DA5A;
   color: #ffffff;
   padding: 0.5rem 1.4rem;
   font-size: 0.875rem;
-  line-height: 1.25rem;
   font-weight: 700;
   text-align: center;
-  vertical-align: middle;
   align-items: center;
+  justify-content: center;
+  align-self: center;
   border-radius: 0.5rem;
-  gap: 0.75rem;
   border: none;
   cursor: pointer;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -233,7 +242,8 @@ body {
   width: 100%;
   position: absolute;
   left: 0;
-  margin-top: 5%;
+  margin-top: 150px;
+  /* margin-bottom: 50px; */
   padding-top: 3%;
 }
 
@@ -309,8 +319,10 @@ body {
 
 /* Zip and spot basically just fixing everything */
 .zipAndSpot {
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
@@ -341,19 +353,27 @@ footer {
   align-items: center;
 }
 
-a {
+footer a {
   color: white;
   text-decoration: none;
   margin-right: 50px;
   /* Add left margin as needed */
+
 }
 
-.logBut {
+a {
+  color: white;
+  text-decoration: none;
+  /* margin-right: 50px; */
+  /* Add left margin as needed */
+}
+
+/* .logBut {
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
-  padding-bottom: 8%;
-}
+  /* transform: translateX(100%); */
+  /* padding-bottom: 8%; */
+/* } */
 
 a:hover {
   text-decoration: underline;
