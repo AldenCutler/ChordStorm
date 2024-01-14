@@ -72,7 +72,7 @@ End of GPT Assistant Setup
 @app.route('/')
 def index():
     text_to_display = "Welcome to Tunecast. <a href='/login'> Login with Spotify</a>"
-    return text_to_display
+    return render_template('index.html')
 
 @app.route('/login')
 def login():
