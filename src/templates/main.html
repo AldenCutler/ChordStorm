@@ -26,20 +26,26 @@
             <p class="city">{{ place_data.place_name }}, {{ place_data.state_code }}</p>
             <p class="weather">{{ sky }}</p>
             <div class="weather">
-              {% if weather_data %}
+              {% if icon %}
                 <span class="material-symbols-sharp" id="current-weather">{{ icon }}</span>
               {% endif %}
             </div>
-            <p class="temp">{{ weather_data.current.temperature_2m|round|int }}°</p>
+            {% if weather_data.current %}
+                <p class="temp">{{ weather_data.current.temperature_2m|round|int }}°</p>
+            {% endif %}
             <div class="minmaxContainer">
               <div class="min">
                 <p class="minHeading">Min</p>
+                {% if weather_data.current %}
                 <p class="minTemp">{{ weather_data.daily.temperature_2m_min[0]|round|int }} °</p>
+                {% endif %}
               </div>
               <div class="max">
                 <p class="maxHeading">Max</p>
+                {% if weather_data.current %}
                 <p class="maxTemp">{{ weather_data.daily.temperature_2m_max[0]|round|int }}°</p>
-              </div>
+                {% endif %}
+            </div>
             </div>
           </div>
         </div>
