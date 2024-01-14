@@ -2,12 +2,11 @@
 
 :root {
   --lightgreen: #fbfff1; 
-  background: linear-gradient(135deg, rgb(86, 170, 117) 10%, rgb(14, 92, 173) 100%);
     font-family: 'Roboto Condensed';
 }
 
 body {
-    background-image: linear-gradient(to bottom, var(--blue), var(--darkblue));
+    background: linear-gradient(135deg, rgb(86, 170, 117) 10%, rgb(14, 92, 173) 100%);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -298,7 +297,7 @@ footer {
     background-color: #0c305b;
     color: white;
     text-align: center;
-    position: absolute;
+    position: relative;
     bottom: 0;
     width: 100%;
 }
@@ -322,12 +321,17 @@ a:hover {
     text-decoration: underline;
 }
 
+.bigCard{
+  width: 10%;
+  height:157px;
+  transform: translateX(150%) translateY(150%);
+}
+
 .cardContainer {
-    width: fit-content;
-    position: absolute; /* Change to absolute */
+    width: fit-content; /* Change to absolute */
     top: 60%; /* Add this */
     left: 30%; /* Add this */
-    transform: translate(-50%, -50%); /* Add this */
+    transform: translate(-50%, -43%); /* Add this */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -335,8 +339,8 @@ a:hover {
 
 .card {
     position: relative;
-    width: 220px;
-    height: 250px;
+    width: 274px;
+    height: 506px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -527,3 +531,43 @@ a:hover {
     object-fit: cover;
     border-radius: 50%; /* Optional: add border-radius for a circular image */
 }  
+
+.mainContainer{
+  display: flex;
+  justify-content: space-evenly;
+  margin-left: 15%;
+  margin-right: 15%;
+  max-width: 100%;
+}
+
+/* Spotify Recomendations */
+
+.spotifyRec{
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Optional: center items horizontally */
+  background: black;
+  padding:15px;
+  border-radius: 15px;
+  margin-bottom: 20px;;
+  
+}
+
+.recHead {
+  color: white;
+}
+
+.spotLogo{
+  max-width: 35px;
+  margin-right: 10px;
+}
+
+.sideBySide{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+}
+iframe{
+  max-height: 80px;
+  margin-bottom: 10px;
+}
