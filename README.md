@@ -33,17 +33,17 @@
     <img src="src/static/images/hacktyhon_logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">TuneCast</h3>
+<h3 align="center">ChordStorm</h3>
 
   <p align="center">
-    TuneCast is a web app made for the GoatHacks 2024 Hackathon that recommends music based on the current weather and your listening history. 
+    ChordStorm is a web app made for the GoatHacks 2024 Hackathon that recommends music based on the current weather and your listening history. 
     <br />
     <br />
     <br />
     ·
-    <a href="https://github.com/AldenCutler/TuneCast/issues">Report Bug</a>
+    <a href="https://github.com/AldenCutler/ChordStorm/issues">Report Bug</a>
     ·
-    <a href="https://github.com/AldenCutler/TuneCast/issues">Request Feature</a>
+    <a href="https://github.com/AldenCutler/ChordStorm/issues">Request Feature</a>
   </p>
 </div>
 
@@ -77,7 +77,7 @@
 
 <!--[![Product Name Screen Shot][product-screenshot]](https://example.com)-->
 
-TuneCast is a web app made for GoatHacks 2024 that recommends music based on the current weather and your listening history. To use this app, you must type your zip code and login with your Spotify. From this information, the app will recommend new music to enjoy. The creators are Abhi Yammanuru, Alden Cutler, Jason Zhang, Mahit Verma, and Ronit Banerjee.
+ChordStorm is a web app made for GoatHacks 2024 that recommends music based on the current weather and your listening history. To use this app, you must type your zip code and login with your Spotify. From this information, the app will recommend new music to enjoy. The creators are Abhi Yammanuru, Alden Cutler, Jason Zhang, Mahit Verma, and Ronit Banerjee.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
