@@ -77,7 +77,7 @@
 
 <!--[![Product Name Screen Shot][product-screenshot]](https://example.com)-->
 
-ChordStorm is a web app made for GoatHacks 2024 that recommends music based on the current weather and your listening history. To use this app, you must type your zip code and login with your Spotify. From this information, the app will recommend new music to enjoy. The creators are Abhi Yammanuru, Alden Cutler, Jason Zhang, Mahit Verma, and Ronit Banerjee.
+ChordStorm is a web app made for GoatHacks 2024 that uses AI to recommend music based on the current weather and your listening history. To use this app, you must type your zip code and login with your Spotify. From this information, the app will recommend new music to enjoy. The creators are Abhi Yammanuru, Alden Cutler, Jason Zhang, Mahit Verma, and Ronit Banerjee.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
