@@ -36,7 +36,7 @@
 <h3 align="center">ChordStorm</h3>
 
   <p align="center">
-    ChordStorm (formerly called 'TuneCast') is a web app made for the GoatHacks 2024 Hackathon that recommends music based on the current weather and your listening history. 
+    ChordStorm (formerly called 'TuneCast') is a web app made for the GoatHacks 2024 Hackathon that uses AI to recommend music based on the current weather and your listening history. 
     <br />
     <br />
     <br />
